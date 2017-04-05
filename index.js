@@ -29,7 +29,10 @@ var argv = yargs
     .alias('c', 'config')
     .describe('c', 'Provide a json file for use as config')
 
+
     .describe('init-config', 'Generate an example config.json')
+
+    .describe('path-to-make', 'Path to elm-make')
 
     .argv;
 
@@ -202,6 +205,9 @@ var options = {
     output: 'elm.js'
 };
 
+if(typeof argv.pathToMake !== "undefined" && argv.pathToMake) {
+    options.pathToMake = argv.pathToMake;
+}
 
 var compileProcess = compile(privateMainPath, options);
 
